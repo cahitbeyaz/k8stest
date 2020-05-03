@@ -3,15 +3,15 @@ sudo: required
 services:
     - docker
 
-cache:
-    directories:
-        - "$HOME/google-cloud-sdk/"
-
+env:
+    global:
+    # Do not prompt for user input when using any SDK methods.
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1 
+      
 before_install:
     - openssl aes-256-cbc -K $encrypted_dee17404e69f_key -iv $encrypted_dee17404e69f_iv -in k8stest-service-account.json.enc -out k8stest-service-account.json -d
-    - gcloud version || true
-    - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
-    # Add gcloud to $PATH
+    - curl https://sdk.cloud.google.com | bash > /dev/null;
+    - source $HOME/google-cloud-sdk/path.bash.inc
     - gcloud components update kubectl
     - gcloud version
     - gcloud auth activate-service-account --key-file service-account.json
