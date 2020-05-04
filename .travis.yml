@@ -7,6 +7,7 @@ env:
     global:
     # Do not prompt for user input when using any SDK methods.
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1 
+    - GIT_SHA=$(git rev-parse HEAD)
       
 before_install:
     - openssl aes-256-cbc -K $encrypted_dee17404e69f_key -iv $encrypted_dee17404e69f_iv -in k8stest-service-account.json.enc -out k8stest-service-account.json -d
