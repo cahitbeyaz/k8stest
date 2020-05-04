@@ -18,7 +18,7 @@ before_install:
     - gcloud config set project k8stest-276107
     - gcloud config set compute/zone europe-west6-b
     - gcloud container clusters get-credentials cluster-1
-    - echo "$DOCKER_PASSWORD" | docker login -u "DOCKER_USERNAME" --password-stdin
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
     - docker build -t cahitbeyaz/react-test -f ./client/Dockerfile.dev ./client
 
 script:
@@ -27,3 +27,5 @@ script:
 deploy:
     provider: script
     script: bash ./deploy.sh
+    on:
+        branch: master
