@@ -1,6 +1,6 @@
-docker build -t cahitbeyaz/mult-client:latest -t cahitbeyaz/mult-client:$GIT_SHA -f ./client/Dockerfile .client
-docker build -t cahitbeyaz/mult-server:latest -t cahitbeyaz/mult-server:$GIT_SHA -f ./server/Dockerfile .server
-docker build -t cahitbeyaz/mult-worker:latest -t cahitbeyaz/mult-worker:$GIT_SHA -f ./worker/Dockerfile .worker
+docker build -t cahitbeyaz/mult-client:latest -t cahitbeyaz/mult-client:$GIT_SHA -f ./client/Dockerfile ./client
+docker build -t cahitbeyaz/mult-server:latest -t cahitbeyaz/mult-server:$GIT_SHA -f ./server/Dockerfile ./server
+docker build -t cahitbeyaz/mult-worker:latest -t cahitbeyaz/mult-worker:$GIT_SHA -f ./worker/Dockerfile ./worker
 
 docker push cahitbeyaz/multi-client:latest
 docker push cahitbeyaz/multi-server:latest
